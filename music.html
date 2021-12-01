@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>music</title>
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+</head>
+<link rel="stylesheet" type="text/css" href="music.css">
+
+<body>
+    <div id="div1" class="row"></div>
+
+    <center>
+
+
+        <!-- <div class="player"> -->
+
+        <!-- Define the section for displaying details -->
+        <!-- <div class="details">
+      <div class="now-playing">PLAYING x OF y</div>
+      <div class="track-art"></div>
+      <div class="track-name">Track Name</div>
+      <div class="track-artist">Track Artist</div>
+    </div> -->
+
+        <!-- Define the section for displaying track buttons -->
+        <div id="demo" class="buttons">
+            <span class="prev-track" onclick="prevTrack()">
+        <i id="pre"class="fa fa-step-backward fa-2x"></i>
+      </span>
+            <span class="playpause-track" >
+        <i id="play1" class="fa fa-play-circle fa-2x"onclick="playpauseTrack()"></i>
+      </span>
+            <span class="next-track" onclick="nextTrack()">
+        <i id="next"class="fa fa-step-forward fa-2x"></i>
+      </span>
+        </div>
+
+        <!-- Define the section for displaying the seek slider-->
+       <!--  <div class="slider_container">
+            <div class="current-time">00:00</div>
+            <input id="song" type="range" min="1" max="100" value="0" class="seek_slider" onchange="seekTo()">
+            <div class="total-duration">00:00</div>
+        </div>
+      -->
+        <!-- Define the section for displaying the volume slider-->
+       <!--  <div class="slider_container">
+            <i class="fa fa-volume-down"></i>
+            <input type="range" min="1" max="100" value="99" class="volume_slider" onchange="setVolume()">
+            <i class="fa fa-volume-up"></i>
+        </div>
+        </div>
+        --> <!-- <audio controls>
+  <source src="Paaraake.mp3" type="audio/ogg">
+  <source src="Vathikkalu Vellaripravu.mp3" type="audio/mpeg">
+Your browser does not support the audio element.
+</audio> -->
+
+<audio id="audio" controls></audio>
+
+
+
+
+        <footer id="footer">
+            <div class="row">
+                <div class="col-sm-2">
+                    <a href="watch.html"><i id="i4"class="fa fa-home" aria-hidden="true"></i></a>
+                    <a href="email.html"><i id="i1" class="fa fa-envelope-o" aria-hidden="true"></i></a>
+                    <a href="music.html"><i id="i3" class="fa fa-music" aria-hidden="true"></i></a>
+                    <a href="stopwatch.html"><i id="i2" class="fa fa-clock-o" aria-hidden="true"></i></a>
+                </div>
+            </div>
+        </footer>
+
+    </center>
+    <script type="text/javascript">
+        // function playpauseTrack() {
+        //     console.log("hii")
+        //     var xhttp = new XMLHttpRequest();
+        //     xhttp.onreadystatechange = function() {
+        //         if (this.readyState == 4 && this.status == 200) {
+        //             var data = JSON.parse(this.responseText);
+        //             console.log(data)
+        //             var music = data.track_list;
+        //             console.log(music)
+        //         }
+        //     }
+        //     xhttp.open("GET", "music.json", true)
+        //     xhttp.send()
+        // }
+    var i=0;
+    var a=document.getElementById("audio")
+    var c=document.getElementsByTagName("i")[1]
+   function playpauseTrack() {
+       var xhttp = new XMLHttpRequest();
+       xhttp.onreadystatechange = function() {
+           if (this.readyState == 4 && this.status == 200) {
+               var response1 = JSON.parse(xhttp.responseText);
+               console.log(response1)
+               var music=response1.track_list;
+               console.log(music)
+               var m=music[i].path
+               console.log(m)
+               a.src=m
+               // a.play()
+               if (c.className=="fa fa-play-circle fa-2x") 
+               {
+                c.className="fa fa-pause-circle fa-2x";
+                a.play();
+               }
+               else
+               {
+                c.className="fa fa-play-circle fa-2x"
+                a.pause();
+               }
+           }
+       }
+       xhttp.open("GET", "music.json", true)
+       xhttp.send()
+   }
+
+
+   function prevTrack() {
+        playpauseTrack()
+        i--
+       }
+
+  function nextTrack() {
+        playpauseTrack()
+        i++
+       }
+
+
+
+
+
+
+
+
+        //    var x = document.getElementById("myAudio");
+
+        // function playAudio() {
+        //   x.play();
+        // }
+
+        // function pauseAudio() {
+        //   x.pause();
+        // }
+    </script>
+</body>
+
+</html>

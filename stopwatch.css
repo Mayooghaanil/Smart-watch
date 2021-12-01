@@ -1,0 +1,38 @@
+body  {
+  
+  background-image: url("Screenshot (148).png");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
+  background-size: 370px 550px;
+}
+#div1
+{
+	height: 200px
+
+}
+#i1,#i2,#i3,#i4
+{
+	font-size:35px;
+  padding: 18px;
+  color: black;
+	
+}
+#output
+{
+	font-size:35px;
+}
+#footer {
+  position: fixed;
+  left: 0;
+  bottom: 150px;
+  width: 100%;
+  text-align: center;
+
+}
+button
+{
+	background-color: black;
+	color: white;
+	border-radius: 5px;
+}
